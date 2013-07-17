@@ -23,7 +23,7 @@ describe PhoneNumbersController do
   # This should return the minimal set of attributes required to create a valid
   # PhoneNumber. As you add validations to PhoneNumber, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "number" => "MyString", "person_id" => 1 } }
+  let(:valid_attributes) { { "number" => "MyString" } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -63,6 +63,10 @@ describe PhoneNumbersController do
 
   describe "POST create" do
     describe "with valid params" do
+
+      let(:alice) { Person.create(first_name: 'Alice', last_name: 'Smith') }
+      let(:valid_attributes) { {number: '555-1234', person_id: alice.id} }
+
       it "creates a new PhoneNumber" do
         expect {
           post :create, {:phone_number => valid_attributes}, valid_session
@@ -75,10 +79,13 @@ describe PhoneNumbersController do
         assigns(:phone_number).should be_persisted
       end
 
-      it "redirects to the created phone_number" do
+      it "redirects to the phone number's person" do
+        alice = Person.create(first_name: 'Alice', last_name: 'Smith')
+        valid_attributes = {number: '555-8888', person_id: alice.id}
         post :create, {:phone_number => valid_attributes}, valid_session
-        response.should redirect_to(PhoneNumber.last)
+        expect(response).to redirect_to(alice)
       end
+
     end
 
     describe "with invalid params" do

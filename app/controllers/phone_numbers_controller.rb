@@ -44,12 +44,13 @@ class PhoneNumbersController < ApplicationController
 
     respond_to do |format|
       if @phone_number.save
-        format.html { redirect_to @phone_number, notice: 'Phone number was successfully created.' }
+        format.html { notice: 'Phone number was successfully created.' }
         format.json { render json: @phone_number, status: :created, location: @phone_number }
       else
         format.html { render action: "new" }
         format.json { render json: @phone_number.errors, status: :unprocessable_entity }
       end
+      redirect_to @phone_number.person
     end
   end
 
