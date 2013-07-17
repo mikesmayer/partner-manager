@@ -7,8 +7,6 @@ gem 'rails', '3.2.13'
 
 gem 'unicorn'
 
-gem 'sqlite3'
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -38,6 +36,11 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'debugger'
 
+group :production do
+  gem 'pg'
+end
+
 group :development, :test do
   gem 'rspec-rails'
+  gem 'sqlite3'
 end
