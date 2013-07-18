@@ -1,8 +1,10 @@
 class Person < ActiveRecord::Base
-  has_many :phone_numbers
-  has_many :email_addresses
-
   attr_accessible :first_name, :last_name
 
-  validates :first_name, :last_name, presence: true
+  validates :last_name, presence: true
+  validates :first_name, presence: true
+
+  has_many :phone_numbers, as: :contact
+  has_many :email_addresses, as: :contact
+
 end
