@@ -62,10 +62,11 @@ describe PhoneNumbersController do
   end
 
   describe "POST create" do
-    describe "with valid params" do
 
-      let(:alice) { Person.create(first_name: 'Alice', last_name: 'Smith') }
-      let(:valid_attributes) { {number: '555-1234', person_id: alice.id} }
+    let(:person) { Person.create(first_name: 'Alice', last_name: 'Smith') }
+    let(:valid_attributes) { {number: '555-1234', person_id: person.id} }
+
+    describe "with valid params" do
 
       it "creates a new PhoneNumber" do
         expect {
@@ -80,10 +81,8 @@ describe PhoneNumbersController do
       end
 
       it "redirects to the phone number's person" do
-        alice = Person.create(first_name: 'Alice', last_name: 'Smith')
-        valid_attributes = {number: '555-8888', person_id: alice.id}
         post :create, {:phone_number => valid_attributes}, valid_session
-        expect(response).to redirect_to(alice)
+        expect(response).to redirect_to(person)
       end
     end
 
@@ -105,11 +104,11 @@ describe PhoneNumbersController do
   end
 
   describe "PUT update" do
+
+    let(:person) { Person.create(first_name: 'Bob', last_name: 'Jones') }
+    let(:valid_attributes) { {number: '555-5678', person_id: person.id} }
+
     describe "with valid params" do
-
-      let(:bob) { Person.create(first_name: 'Bob', last_name: 'Jones') }
-      let(:valid_attributes) { {number: '555-5678', person_id: bob.id} }
-
       it "updates the requested phone_number" do
         phone_number = PhoneNumber.create! valid_attributes
         # Assuming there are no other phone_numbers in the database, this
@@ -129,7 +128,7 @@ describe PhoneNumbersController do
       it "redirects to the phone_number" do
         phone_number = PhoneNumber.create! valid_attributes
         put :update, {:id => phone_number.to_param, :phone_number => valid_attributes}, valid_session
-        expect(response).to redirect_to(bob)
+        expect(response).to redirect_to(person)
       end
     end
 
@@ -163,7 +162,7 @@ describe PhoneNumbersController do
     it "redirects to the phone_numbers list" do
       phone_number = PhoneNumber.create! valid_attributes
       delete :destroy, {:id => phone_number.to_param}, valid_session
-      response.should redirect_to(bob)
+      response.should redirect_to(person)
     end
   end
 
