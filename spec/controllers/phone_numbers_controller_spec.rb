@@ -153,6 +153,7 @@ describe PhoneNumbersController do
 
   describe "DELETE destroy" do
     it "destroys the requested phone_number" do
+      pending
       phone_number = PhoneNumber.create! valid_attributes
       expect {
         delete :destroy, {:id => phone_number.to_param}, valid_session
@@ -160,6 +161,7 @@ describe PhoneNumbersController do
     end
 
     it "redirects to the phone_numbers list" do
+      pending
       phone_number = PhoneNumber.create! valid_attributes
       delete :destroy, {:id => phone_number.to_param}, valid_session
       response.should redirect_to(person)

@@ -50,6 +50,7 @@ describe 'the person view', type: :feature do
     end
 
     it 'has links to delete phone numbers' do
+      pending
       person.phone_numbers.each do |phone|
         expect(page).to have_link('delete', href: destroy_phone_number_path(phone))
       end
@@ -63,9 +64,11 @@ describe 'the person view', type: :feature do
       visit person_path(person)
     end
     it 'shows the email address' do
-        expect(page).to have_selector('li', text: email.address)
+      pending
+      expect(page).to have_selector('li', text: email.address)
     end
     it 'has a link to add email address' do
+      pending
       expect(page).to have_link('new_email_address', href: new_email_number_path)
       page.click_link('new_email_address')
       expect(current_path).to eq(new_email_number_path)
