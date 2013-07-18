@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe PhoneNumber do
-  let(:phone_number) { PhoneNumber.new(number: "1112223333", person_id: 1) }
+  let(:phone_number) do
+    PhoneNumber.new(number: "1112223333", person_id: 1)
+  end
   it 'is valid' do
     expect(phone_number).to be_valid
   end
