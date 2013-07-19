@@ -34,10 +34,24 @@
 <div class="text-center">
   <h5>How does your company use local partners?</h5>
   <p>Please take our quick survey before signing up...</p>
+  <div id="modal-form" class="modal" style="display: <%= @visitor.errors.any? ? 'block' : 'none';%>">
   <%= simple_form_for @visitor do |f| %>
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">&#215;</a>
+    <h3>How does your company use local partners?</h3>
+  </div>
+  <div class="modal-body">
     <%= f.error_notification %>
     <%= f.input :favorite, :collection => ['Generate leads', 'Close leads', 'After sales support'], label: false, as: :radio_buttons, :item_wrapper_class => 'inline' %>
     <%= f.input :comment, label: false, :placeholder => 'Add a comment...' %>
-    <%= f.submit "Choose!", :class => "btn btn-primary"%>
-  <% end %>
+    </div>
+      <div class="modal-footer">
+        <%= f.submit "submit", :class => "btn btn-primary"%>
+        <a class="btn" data-dismiss="modal" href="#">Close</a>
+      </div>
+    <% end %>
+  </div>
+  <div id="call-to-action">
+    <a class="btn btn-primary btn-large" data-toggle="modal" href="#modal-form">Choose!</a>
+  </div>
 </div>
