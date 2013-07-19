@@ -1,6 +1,6 @@
 PartnerManager::Application.routes.draw do
 
-  root to: 'people#index'
+  root :to => 'visitors#new'
 
   resources :companies
 
