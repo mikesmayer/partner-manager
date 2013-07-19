@@ -20,16 +20,20 @@ group :assets do
 
   gem 'uglifier', '>= 1.3.0'
   gem 'bootstrap-sass'
-  gem 'figaro'
+
   gem 'high_voltage'
-  gem 'simple_form', '>= 3.0.0.rc'
 end
+
+gem 'simple_form', '>= 3.0.0.rc'
 
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
+
 gem 'activerecord-tableless'
 gem 'google_drive'
+
+gem 'figaro'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
