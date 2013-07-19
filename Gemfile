@@ -58,7 +58,7 @@ group :development do
 end
 
 group :production do
-  gem 'rails_on_heroku'
+  gem 'rails_12factor'
 end
 
 group :development, :test do
