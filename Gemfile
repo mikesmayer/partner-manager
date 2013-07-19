@@ -54,6 +54,7 @@ end
 
 group :production do
   gem 'pg'
+  gem 'rails_on_heroku'
 end
 
 group :development, :test do
