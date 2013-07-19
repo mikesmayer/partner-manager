@@ -2,16 +2,15 @@ PartnerManager::Application.routes.draw do
 
   get "high_voltage/pages/*id" => 'pages#show'
 
+  resources :visitors, only: [:new, :create]
+
   root :to => 'visitors#new'
 
   resources :companies
 
-
   resources :email_addresses
 
-
   resources :phone_numbers
-
 
   resources :people
 
