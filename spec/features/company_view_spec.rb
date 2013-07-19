@@ -2,28 +2,30 @@ require 'spec_helper'
 require 'capybara/rails'
 require 'capybara/rspec'
 
-describe 'the person view', type: :feature do
+describe 'the company view', type: :feature do
 
-  let(:person) { Person.create(first_name: 'John', last_name: 'Doe') }
+  let(:company) { Company.create(name: 'Mayer & Co.') }
 
   describe 'phone number integrations' do
     before(:each) do
-      person.phone_numbers.create(number: "555-1234")
-      person.phone_numbers.create(number: "555-5678")
-      visit person_path(person)
+      company.phone_numbers.create(number: "555-1234")
+      company.phone_numbers.create(number: "555-5678")
+      visit company_path(company)
     end
 
     it 'shows the phone numbers' do
-      person.phone_numbers.each do |phone|
+      company.phone_numbers.each do |phone|
         expect(page).to have_content(phone.number)
       end
     end
 
     it 'has a link to add another' do
+      pending
       expect(page).to have_link('Add phone number', href: new_phone_number_path(contact_id: person.id, contact_type: 'Person'))
     end
 
     it 'adds a new phone number' do
+      pending
       page.click_link('Add phone number')
       page.fill_in('Number', with: '555-8888')
       page.click_button('Create Phone number')
@@ -32,12 +34,14 @@ describe 'the person view', type: :feature do
     end
 
     it 'has links to edit phone numbers' do
+      pending
       person.phone_numbers.each do |phone|
         expect(page).to have_link('edit', href: edit_phone_number_path(phone))
       end
     end
 
     it 'edits a phone number' do
+      pending
       phone = person.phone_numbers.first
       old_number = phone.number
 
@@ -50,6 +54,7 @@ describe 'the person view', type: :feature do
     end
 
     it 'has links to delete phone numbers' do
+      pending
       person.phone_numbers.each do |phone|
         expect(page).to have_link('delete', href: destroy_phone_number_path(phone))
       end
@@ -57,18 +62,22 @@ describe 'the person view', type: :feature do
   end
 
   describe 'email address integrations' do
+    pending
     before(:each) do
-      person.email_addresses.create(address: "email@email.com")
-      person.email_addresses.create(address: "email@address.com")
-      visit person_path(person)
+      company.email_addresses.create(address: "email@email.com")
+      company.email_addresses.create(address: "email@address.com")
+      visit company_path(company)
     end
     it 'shows the email address' do
+      pending
       expect(page).to have_selector('li', text: email.address)
     end
     it 'has a link to add email address' do
+      pending
       expect(page).to have_link('Add email address', href: new_email_address_path(contact_id: person.id, contact_type: 'Person'))
     end
     it 'adds an email address' do
+      pending
       page.click_link('Add email address')
       page.fill_in('Address', with: 'email@email.com')
       page.click_button('Create Email address')

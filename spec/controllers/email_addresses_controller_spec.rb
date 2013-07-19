@@ -23,7 +23,7 @@ describe EmailAddressesController do
   # This should return the minimal set of attributes required to create a valid
   # EmailAddress. As you add validations to EmailAddress, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "address" => "MyString", "person_id" => 1 } }
+  let(:valid_attributes) { { "address" => "MyString", "contact_id" => 1, "contact_type" => "Person" } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -64,7 +64,7 @@ describe EmailAddressesController do
   describe "POST create" do
 
     let(:person) { Person.create(first_name: 'Jim', last_name: 'Banks') }
-    let(:valid_attributes) { {address: 'email@email.com', person_id: person.id} }
+    let(:valid_attributes) { { "address" => "MyString", "contact_id" => 1, "contact_type" => "Person" } }
 
     describe "with valid params" do
 
@@ -104,6 +104,10 @@ describe EmailAddressesController do
   end
 
   describe "PUT update" do
+
+    let(:person) { Person.create(first_name: 'Bob', last_name: 'Jones') }
+    let(:valid_attributes) { { "address" => "MyString", "contact_id" => 1, "contact_type" => "Person" } }
+
     describe "with valid params" do
       it "updates the requested email_address" do
         email_address = EmailAddress.create! valid_attributes
@@ -149,7 +153,6 @@ describe EmailAddressesController do
 
   describe "DELETE destroy" do
     it "destroys the requested email_address" do
-      pending
       email_address = EmailAddress.create! valid_attributes
       expect {
         delete :destroy, {:id => email_address.to_param}, valid_session
@@ -157,7 +160,6 @@ describe EmailAddressesController do
     end
 
     it "redirects to the email_addresses list" do
-      pending
       email_address = EmailAddress.create! valid_attributes
       delete :destroy, {:id => email_address.to_param}, valid_session
       response.should redirect_to(email_addresses_url)
