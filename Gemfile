@@ -11,18 +11,17 @@ gem 'unicorn'
 
 # Gems used only for assets and not required
 # in production environments by default.
-group :assets do
-  gem 'sass-rails', '~> 4.0.0'
-  gem 'coffee-rails', '~> 4.0.0'
 
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
+gem 'sass-rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.0.0'
 
-  gem 'uglifier', '>= 1.3.0'
-  gem 'bootstrap-sass'
+# See https://github.com/sstephenson/execjs#readme for more supported runtimes
+# gem 'therubyracer', :platforms => :ruby
 
-  gem 'high_voltage'
-end
+gem 'uglifier', '>= 1.3.0'
+gem 'bootstrap-sass'
+
+gem 'high_voltage'
 
 gem 'simple_form', '>= 3.0.0.rc'
 
@@ -50,6 +49,8 @@ gem 'figaro'
 # To use debugger
 # gem 'debugger'
 
+gem 'pg'
+
 group :development do
   gem 'capybara'
   gem 'better_errors'
@@ -57,11 +58,9 @@ group :development do
 end
 
 group :production do
-  gem 'pg'
   gem 'rails_on_heroku'
 end
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'sqlite3'
 end
