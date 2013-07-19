@@ -1,5 +1,7 @@
 PartnerManager::Application.routes.draw do
 
+  get "high_voltage/pages/*id" => 'pages#show'
+
   root :to => 'visitors#new'
 
   resources :companies
